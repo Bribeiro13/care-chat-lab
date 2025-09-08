@@ -28,29 +28,10 @@ const MedicalChat = () => {
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return;
 
-    // Add user message
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      type: "user",
-      content: message,
-      timestamp: new Date(),
-    };
-
-    setMessages(prev => [...prev, userMessage]);
-    setInputMessage("");
-    setIsTyping(true);
-
-    // Simulate AI response
-    setTimeout(() => {
-      const assistantMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: "assistant",
-        content: "Obrigado pela sua pergunta. Como este é um protótipo, não posso fornecer respostas médicas reais. Para implementar funcionalidades de IA real, você precisaria integrar com APIs como OpenAI, Anthropic ou outros modelos especializados em medicina. Recomendo sempre consultar profissionais médicos qualificados para questões de saúde.",
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, assistantMessage]);
-      setIsTyping(false);
-    }, 1500);
+    // Redirecionar para login quando tentar enviar mensagem
+    alert("Você precisa fazer login para usar o chat. Redirecionando...");
+    // Aqui seria o redirecionamento para a página de login
+    console.log("Redirecionando para login...");
   };
 
   const formatTime = (date: Date) => {
@@ -69,8 +50,8 @@ const MedicalChat = () => {
             <Stethoscope className="w-8 h-8 text-white" />
           </div>
           <div className="text-white">
-            <h1 className="text-2xl font-bold">MediChat AI</h1>
-            <p className="text-white/90">Assistente de IA para Estudantes e Pesquisadores em Saúde</p>
+            <h1 className="text-2xl font-bold">Medicalink</h1>
+            <p className="text-white/90">Plataforma para Estudantes e Pesquisadores em Saúde</p>
           </div>
         </div>
       </div>
