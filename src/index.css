@@ -37,10 +37,10 @@ All colors MUST be HSL.
     --ring: 210 100% 56%;
 
     /* Medical theme colors - Verde mais claro */
-    --medical-primary: 135 65% 45%;
-    --medical-secondary: 142 70% 75%;
-    --medical-light: 145 25% 97%;
-    --medical-accent: 150 40% 85%;
+    --medical-primary: 150 60% 50%;
+    --medical-secondary: 155 50% 70%;
+    --medical-light: 150 30% 96%;
+    --medical-accent: 155 35% 88%;
     
     /* Gradients */
     --gradient-medical: linear-gradient(135deg, hsl(var(--medical-primary)), hsl(var(--medical-secondary)));
