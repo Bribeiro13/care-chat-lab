@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigos - Medicalink</title>
+    <meta name="description" content="Explore artigos e pesquisas médicas atualizadas no Medicalink. Conteúdo científico para estudantes e pesquisadores.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-content">
+                <!-- Logo -->
+                <div class="navbar-logo">
+                    <div class="logo-icon">
+                        <i data-lucide="heart"></i>
+                    </div>
+                    <a href="index.html" class="logo-text">Medicalink</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="navbar-desktop">
+                    <a href="sobre.html" class="nav-link">Sobre</a>
+                    <a href="artigos.html" class="nav-link active">Artigos</a>
+                    <a href="contatos.html" class="nav-link">Contatos</a>
+                    <button class="btn btn-outline login-btn" onclick="handleLogin()">Fazer Login</button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="navbar-mobile-btn">
+                    <button class="btn btn-ghost mobile-menu-toggle" onclick="toggleMobileMenu()">
+                        <i data-lucide="menu" class="menu-icon"></i>
+                        <i data-lucide="x" class="close-icon" style="display: none;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div class="navbar-mobile" id="mobileMenu" style="display: none;">
+                <div class="mobile-menu-content">
+                    <a href="sobre.html" class="mobile-nav-link" onclick="closeMobileMenu()">Sobre</a>
+                    <a href="artigos.html" class="mobile-nav-link active" onclick="closeMobileMenu()">Artigos</a>
+                    <a href="contatos.html" class="mobile-nav-link" onclick="closeMobileMenu()">Contatos</a>
+                    <div class="mobile-login">
+                        <button class="btn btn-outline login-btn-mobile" onclick="handleLogin()">Fazer Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Articles Section -->
+        <div class="page-section">
+            <div class="page-container">
+                <h1 class="page-title">Artigos e Pesquisas</h1>
+                <p class="page-subtitle">
+                    Explore nosso acervo de artigos médicos e pesquisas científicas atualizadas
+                </p>
+
+                <!-- Search Bar -->
+                <div class="articles-search">
+                    <form class="search-form" onsubmit="handleSearch(event)">
+                        <div class="search-container">
+                            <div class="search-input-wrapper">
+                                <i data-lucide="search" class="search-icon"></i>
+                                <input
+                                    type="text"
+                                    placeholder="Buscar artigos..."
+                                    class="search-input"
+                                    id="articlesSearchInput"
+                                >
+                            </div>
+                            <button type="submit" class="btn btn-primary search-btn">
+                                Buscar
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Categories -->
+                <div class="categories-section">
+                    <h2 class="section-title">Categorias</h2>
+                    <div class="categories-grid">
+                        <button class="category-btn" onclick="handleCategoryFilter('cardiologia')">
+                            <i data-lucide="heart"></i>
+                            Cardiologia
+                        </button>
+                        <button class="category-btn" onclick="handleCategoryFilter('neurologia')">
+                            <i data-lucide="brain"></i>
+                            Neurologia
+                        </button>
+                        <button class="category-btn" onclick="handleCategoryFilter('pediatria')">
+                            <i data-lucide="baby"></i>
+                            Pediatria
+                        </button>
+                        <button class="category-btn" onclick="handleCategoryFilter('oncologia')">
+                            <i data-lucide="shield"></i>
+                            Oncologia
+                        </button>
+                        <button class="category-btn" onclick="handleCategoryFilter('medicina-preventiva')">
+                            <i data-lucide="activity"></i>
+                            Medicina Preventiva
+                        </button>
+                        <button class="category-btn" onclick="handleCategoryFilter('cirurgia')">
+                            <i data-lucide="scissors"></i>
+                            Cirurgia
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Articles Grid -->
+                <div class="articles-full-section">
+                    <h2 class="section-title">Artigos Recentes</h2>
+                    <div class="articles-grid">
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="heart"></i>
+                                </div>
+                                <h3 class="article-title">Novos Tratamentos em Cardiologia</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Estudo abrangente sobre as últimas inovações em tratamentos cardiovasculares 
+                                    e suas aplicações clínicas no cenário atual da medicina.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dr. João Silva</span>
+                                    <span class="article-date">15 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">5 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="brain"></i>
+                                </div>
+                                <h3 class="article-title">Avanços em Neurociência</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Pesquisa sobre os recentes desenvolvimentos em neurociência e suas 
+                                    implicações para o tratamento de doenças neurodegenerativas.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dra. Maria Santos</span>
+                                    <span class="article-date">12 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">8 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="activity"></i>
+                                </div>
+                                <h3 class="article-title">Medicina Preventiva</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Análise detalhada sobre estratégias de medicina preventiva e sua 
+                                    eficácia na redução de doenças crônicas na população.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dr. Carlos Lima</span>
+                                    <span class="article-date">10 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">6 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="baby"></i>
+                                </div>
+                                <h3 class="article-title">Pediatria Moderna</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Estudo sobre as práticas modernas em pediatria e os novos 
+                                    protocolos de cuidados infantis baseados em evidências.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dra. Ana Paula</span>
+                                    <span class="article-date">08 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">7 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="shield"></i>
+                                </div>
+                                <h3 class="article-title">Oncologia Clínica</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Revisão sobre os avanços recentes em oncologia clínica e 
+                                    as novas abordagens terapêuticas para diferentes tipos de câncer.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dr. Roberto Fernandes</span>
+                                    <span class="article-date">05 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">10 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="article-card">
+                            <div class="article-header">
+                                <div class="article-icon">
+                                    <i data-lucide="scissors"></i>
+                                </div>
+                                <h3 class="article-title">Técnicas Cirúrgicas Inovadoras</h3>
+                            </div>
+                            <div class="article-content">
+                                <p class="article-description">
+                                    Exploração das técnicas cirúrgicas mais recentes e minimamente 
+                                    invasivas que estão revolucionando a prática cirúrgica.
+                                </p>
+                                <div class="article-meta">
+                                    <span class="article-author">Dr. Fernando Costa</span>
+                                    <span class="article-date">03 Set 2024</span>
+                                </div>
+                                <div class="article-footer">
+                                    <span class="read-time">9 min</span>
+                                    <button class="btn btn-ghost read-more-btn" onclick="handleReadMore()">
+                                        Ler mais
+                                    </button>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+
+        function handleCategoryFilter(category) {
+            alert(`Filtrando artigos por: ${category}. Faça login para acessar filtros avançados.`);
+            handleLogin();
+        }
+    </script>
+</body>
+</html>

@@ -52,29 +52,8 @@ function handleReadMore() {
     handleLogin();
 }
 
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links (removed since we now use separate pages)
 document.addEventListener('DOMContentLoaded', function() {
-    // Add smooth scrolling to navigation links
-    const navLinks = document.querySelectorAll('a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-            
-            // Close mobile menu if open
-            closeMobileMenu();
-        });
-    });
-    
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(e) {
         const mobileMenu = document.getElementById('mobileMenu');
