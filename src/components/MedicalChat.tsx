@@ -28,10 +28,53 @@ const MedicalChat = () => {
   const handleSendMessage = async (message: string) => {
     if (!message.trim()) return;
 
-    // Redirecionar para login quando tentar enviar mensagem
-    alert("Você precisa fazer login para usar o chat. Redirecionando...");
-    // Aqui seria o redirecionamento para a página de login
-    console.log("Redirecionando para login...");
+    const userMessage: Message = {
+      id: Date.now().toString(),
+      type: "user",
+      content: message,
+      timestamp: new Date(),
+    };
+
+    setMessages(prev => [...prev, userMessage]);
+    setInputMessage("");
+    setIsTyping(true);
+
+    try {
+      const response = await fetch("http://localhost:5678/webhook-test/AgentIA", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: message,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const assistantMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: "assistant",
+          content: data.response || "Desculpe, não consegui processar sua pergunta no momento.",
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, assistantMessage]);
+      } else {
+        throw new Error("Erro na resposta do servidor");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar mensagem:", error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        type: "assistant",
+        content: "Desculpe, ocorreu um erro ao processar sua pergunta. Tente novamente em alguns instantes.",
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   const formatTime = (date: Date) => {
