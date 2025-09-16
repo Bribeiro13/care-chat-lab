@@ -33,23 +33,16 @@ function handleSearch(event) {
     
     if (!query) return;
     
-    // Redirect to login when trying to search
-    alert('Você precisa fazer login para usar a pesquisa. Redirecionando...');
-    console.log('Redirecionando para login...', { query });
-    handleLogin();
+    // Perform search functionality
+    alert(`Buscando por: "${query}"`);
+    console.log('Realizando busca...', { query });
 }
 
-// Login functionality
-function handleLogin() {
-    alert('Sistema de login em desenvolvimento. Conecte ao Supabase para implementar autenticação real.');
-    console.log('Login button clicked - redirect to authentication');
-}
 
 // Read more functionality
 function handleReadMore() {
-    alert('Você precisa fazer login para ler artigos completos. Redirecionando...');
-    console.log('Read more clicked - redirect to login');
-    handleLogin();
+    alert('Artigo completo disponível em breve!');
+    console.log('Read more clicked');
 }
 
 // Smooth scrolling for navigation links (removed since we now use separate pages)
