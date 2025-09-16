@@ -26,16 +26,39 @@ function closeMobileMenu() {
 }
 
 // Search functionality
-function handleSearch(event) {
+async function handleSearch(event) {
     event.preventDefault();
     const searchInput = document.getElementById('searchInput');
     const query = searchInput.value.trim();
     
     if (!query) return;
     
-    // Perform search functionality
-    alert(`Buscando por: "${query}"`);
-    console.log('Realizando busca...', { query });
+    try {
+        // Enviar pergunta para o n8n
+        const response = await fetch("http://localhost:5678/webhook-test/AgentIA", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message: query,
+                timestamp: new Date().toISOString(),
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            alert(`Pergunta: "${query}"\n\nResposta: ${data.response || "Resposta processada com sucesso!"}`);
+        } else {
+            throw new Error("Erro na resposta do servidor");
+        }
+    } catch (error) {
+        console.error("Erro ao enviar pergunta:", error);
+        alert(`Erro ao processar pergunta: "${query}". Tente novamente.`);
+    }
+    
+    // Limpar o campo de pesquisa
+    searchInput.value = '';
 }
 
 
