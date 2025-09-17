@@ -6,13 +6,36 @@ import { Search } from "lucide-react";
 const SearchSection = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
     
-    // Redirecionar para login quando tentar pesquisar
-    alert("Você precisa fazer login para usar a pesquisa. Redirecionando...");
-    console.log("Redirecionando para login...");
+    try {
+      // Enviar pergunta para o n8n
+      const response = await fetch("http://localhost:5678/webhook-test/AgentIA", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: searchQuery,
+          timestamp: new Date().toISOString(),
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        alert(`Pergunta: "${searchQuery}"\n\nResposta: ${data.response || "Resposta processada com sucesso!"}`);
+      } else {
+        throw new Error("Erro na resposta do servidor");
+      }
+    } catch (error) {
+      console.error("Erro ao enviar pergunta:", error);
+      alert(`Erro ao processar pergunta: "${searchQuery}". Tente novamente.`);
+    }
+    
+    // Limpar o campo de pesquisa
+    setSearchQuery('');
   };
 
   return (
